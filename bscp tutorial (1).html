@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bscp tutorial</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="how-to-download-and-use-iluminas-basespace-sequence-hub-cli">How to download and use Ilumina’s BaseSpace Sequence Hub CLI</h1>
+<h2 id="this-script-is-useful-for-anyone-that-wants-to-download-sequence-data-from-basespace-through-the-terminal-instead-of-doing-it-on-their-browser">This script is useful for anyone that wants to download sequence data from Basespace through the terminal instead of doing it on their browser</h2>
+<p>first make a directory called bin and then download bsc into that directory:</p>
+<pre><code>mkdir $HOME/bin
+
+wget "https://api.bintray.com/content/basespace/BaseSpaceCLI-EarlyAccess-BIN/latest/\$latest/amd64-linux/bs?bt_package=latest" -O $HOME/bin/bs
+</code></pre>
+<p>while not necessary run this just in case your server requires it</p>
+<pre><code>chmod u+x $HOME/bin/bs
+</code></pre>
+<p>Install bscp</p>
+<pre><code>wget https://api.bintray.com/content/basespace/BaseSpace-Copy-BIN/\$latest/linux/bscp?bt_package=develop -O $HOME/bin/bs-cp
+</code></pre>
+<p>Now we must authenticate. This line will send you to a url to authenticate your server; copy paste the URL into your browser and follow the instructions</p>
+<pre><code>bs auth
+</code></pre>
+<p>this lists all your projects on your basespace account (notice the IDs, you will need them in the next command</p>
+<pre><code>bs list projects
+</code></pre>
+<p>You should get something like this:</p>
+<hr>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Id</th>
+<th>TotalSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project A</td>
+<td>141432562</td>
+<td>1360787841</td>
+</tr>
+<tr>
+<td>Project B</td>
+<td>141378250</td>
+<td>357584059</td>
+</tr>
+<tr>
+<td>Project C</td>
+<td>139778624</td>
+<td>5139415020</td>
+</tr>
+<tr>
+<td>Project D</td>
+<td>122781570</td>
+<td>3838271977</td>
+</tr>
+</tbody>
+</table><p>This will download all fastq.gz files from your project. Note you have to copy paste the specific ID from your project into this</p>
+<pre><code>bs download run -i &lt;ID&gt; --extension=fastq.gz -o ~/path/of/your/choice 
+</code></pre>
+<p><a href="https://developer.basespace.illumina.com/docs/content/documentation/cli/cli-overview">Here</a> is there official documentation on installing:</p>
+<p>And <a href="https://developer.basespace.illumina.com/docs/content/documentation/cli/cli-examples">here</a> is more in depth documentation on how to navigate the program which I found super helpful</p>
+</div>
+</body>
+
+</html>
